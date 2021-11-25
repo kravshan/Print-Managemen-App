@@ -5,8 +5,6 @@ import 'package:print_management/Services/table_result.dart';
 import 'package:print_management/Services/table_topic.dart';
 
 class PrePress extends StatefulWidget {
-  const PrePress({Key? key}) : super(key: key);
-
   @override
   State<PrePress> createState() => _PrePressState();
 }
