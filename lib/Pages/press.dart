@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:print_management/Services/input_cell.dart';
 import 'package:print_management/Services/table_cell.dart';
 import 'package:print_management/Services/table_result.dart';
 import 'package:hive/hive.dart';
+import 'package:print_management/Services/insert.dart';
 
 class Press extends StatefulWidget {
 
@@ -30,8 +30,37 @@ class _PressState extends State<Press> {
   }
 }
 
-class PressTable extends StatelessWidget {
+class PressTable extends StatefulWidget {
   const PressTable({Key? key}) : super(key: key);
+
+  @override
+  State<PressTable> createState() => _PressTableState();
+}
+
+class _PressTableState extends State<PressTable> {
+
+  var boxPress = Hive.box('press');
+  late double num1;
+  late double num2;
+  late double num3;
+  late double num4;
+  late double num5;
+
+  double result = 0;
+  double totalResult = 0;
+
+  void getResult(){
+    setState(() {
+      result = num1*num2;
+      totalResult = result + num3 + num4 + num5;
+    });
+  }
+
+  final TextEditingController _costImpression = TextEditingController();
+  final TextEditingController _noofImpression = TextEditingController();
+  final TextEditingController _inkCost = TextEditingController();
+  final TextEditingController _plateSet = TextEditingController();
+  final TextEditingController _profit = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,23 +81,20 @@ class PressTable extends StatelessWidget {
                 TableRow(
                   children: [
                     TextTableCell(text: 'Cost per impression',t: 13.0,),
-                    //InputCell(),
+                    Insert(myController: _costImpression)
                   ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'No. of impression',t: 13.0,),
-                      //InputCell(),
+                      Insert(myController: _noofImpression)
                     ]
                 ),
                 TableRow(
                     children: [
                       const TextTableCell(text: 'Impression Cost',t: 13.0,),
                       TableCell(
-                        child: Container(
-                          height: 50.0,
-                          color: Colors.grey,
-                        ),
+                        child: Text('$result')
                       ),
                     ]
                 )
@@ -85,19 +111,19 @@ class PressTable extends StatelessWidget {
                 TableRow(
                   children: [
                     TextTableCell(text: 'Ink Cost',t: 13.0,),
-                    //InputCell()
+                    Insert(myController: _inkCost)
                   ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'Plate Settings',t: 13.0,),
-                      //InputCell()
+                      Insert(myController: _plateSet)
                     ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'Profiting One side',t: 13.0,),
-                      //InputCell()
+                      Insert(myController: _profit)
                     ]
                 )
               ],
@@ -107,13 +133,52 @@ class PressTable extends StatelessWidget {
             //---------End of Table 2---------------------------
 
             const SizedBox(height: 8.0,),
-            TableResult(text: 'Total Press Cost', f0: 1.0, f1: 1.0),
+            Table(
+              border: TableBorder.all(),
+              columnWidths:  <int, TableColumnWidth>{
+                0:FlexColumnWidth(1.0),
+                1:FlexColumnWidth(1.0)
+              },
+              children: [
+                TableRow(
+                    children: [
+                      TextTableCell(text: 'Total Press Cost',t: 13.0,),
+                      TableCell(
+                        child: Text('$totalResult')
+                      )
+                    ]
+                )
+              ],
+            ),
             const SizedBox(height: 8.0,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 RaisedButton(
                   onPressed: (){
+                    final costImpress = _costImpression.text;
+                    boxPress.put('Cost per Impression', costImpress);
+
+                    final impress = _noofImpression.text;
+                    boxPress.put('No of Impression', impress);
+
+                    final inkCost = _inkCost.text;
+                    boxPress.put('Ink Cost', inkCost);
+
+                    final plateSet = _plateSet.text;
+                    boxPress.put('Plate Setting', plateSet);
+
+                    final profit = _profit.text;
+                    boxPress.put('Profit', profit);
+
+                    num1 = double.parse(boxPress.get('Cost per Impression'));
+                    num2 = double.parse(boxPress.get('No of Impression'));
+
+                    num3 = double.parse(boxPress.get('Ink Cost'));
+                    num4 = double.parse(boxPress.get('Plate Setting'));
+                    num5 = double.parse(boxPress.get('Profit'));
+
+                    getResult();
 
                   },
                   child: const Text('Calculate'),
