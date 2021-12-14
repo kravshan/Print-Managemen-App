@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class InputCell extends StatefulWidget {
-  const InputCell({Key? key}) : super(key: key);
 
   @override
   State<InputCell> createState() => _InputCellState();
@@ -9,13 +9,10 @@ class InputCell extends StatefulWidget {
 
 class _InputCellState extends State<InputCell> {
 
-  late var i;
-
-  // double getinputValue(){
-  //   return i;
-  // };
+  late double value;
 
   TextEditingController _nameCrontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return TableCell(
@@ -26,11 +23,18 @@ class _InputCellState extends State<InputCell> {
           cursorColor: Colors.teal[500],
           keyboardType: TextInputType.number,
           decoration: const InputDecoration(
-            border: InputBorder.none
+            border: InputBorder.none,
           ),
-
+          onEditingComplete: (){
+            value = _nameCrontroller.value as double;
+            getController();
+          },
         ),
       ),
     );
+  }
+
+  double getController(){
+    return value;
   }
 }

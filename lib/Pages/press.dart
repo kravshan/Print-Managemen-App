@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:print_management/Services/input_cell.dart';
 import 'package:print_management/Services/table_cell.dart';
 import 'package:print_management/Services/table_result.dart';
+import 'package:hive/hive.dart';
 
 class Press extends StatefulWidget {
-  const Press({Key? key}) : super(key: key);
 
   @override
   _PressState createState() => _PressState();
@@ -21,6 +21,12 @@ class _PressState extends State<Press> {
       ),
       body: const PressTable(),
     );
+  }
+
+  @override
+  void dispose(){
+    Hive.box('press').close();
+    super.dispose();
   }
 }
 
@@ -43,16 +49,16 @@ class PressTable extends StatelessWidget {
               },
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: <TableRow>[
-                const TableRow(
+                TableRow(
                   children: [
                     TextTableCell(text: 'Cost per impression',t: 13.0,),
-                    InputCell(),
+                    //InputCell(),
                   ]
                 ),
-                const TableRow(
+                TableRow(
                     children: [
                       TextTableCell(text: 'No. of impression',t: 13.0,),
-                      InputCell(),
+                      //InputCell(),
                     ]
                 ),
                 TableRow(
@@ -75,23 +81,23 @@ class PressTable extends StatelessWidget {
             Table(
               border: TableBorder.all(),
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              children: const [
+              children: [
                 TableRow(
                   children: [
                     TextTableCell(text: 'Ink Cost',t: 13.0,),
-                    InputCell()
+                    //InputCell()
                   ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'Plate Settings',t: 13.0,),
-                      InputCell()
+                      //InputCell()
                     ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'Profiting One side',t: 13.0,),
-                      InputCell()
+                      //InputCell()
                     ]
                 )
               ],
@@ -126,6 +132,7 @@ class PressTable extends StatelessWidget {
         ),
       ),
     );
+
   }
 }
 

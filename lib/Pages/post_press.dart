@@ -4,9 +4,9 @@ import 'package:print_management/Services/input_textcell.dart';
 import 'package:print_management/Services/table_cell.dart';
 import 'package:print_management/Services/table_result.dart';
 import 'package:print_management/Services/table_topic.dart';
+import 'package:hive/hive.dart';
 
 class PostPress extends StatefulWidget {
-  const PostPress({Key? key}) : super(key: key);
 
   @override
   _PostPressState createState() => _PostPressState();
@@ -23,6 +23,11 @@ class _PostPressState extends State<PostPress> {
         ),
         body: PostPressTable(),
     );
+  }
+  @override
+  void dispose(){
+    Hive.box('post_press').close();
+    super.dispose();
   }
 }
 
@@ -52,7 +57,7 @@ class _PostPressTableState extends State<PostPressTable> {
               children: [
                 TableRow(
                   children: [
-                    const TextTableCell(text:'Laminating type', t: 13.0),
+                    const  TextTableCell(text:'Laminating type', t: 13.0),
                     TableCell(
                       child: Container(
                         child: Center(
@@ -88,17 +93,17 @@ class _PostPressTableState extends State<PostPressTable> {
                   ]
 
                 ),
-                const TableRow(
+                 TableRow(
                     children: [
                       TextTableCell(text: 'Unit Cost', t: 13.0),
-                      InputCell(),
+                      //InputCell(),
                       //InputCell(),
                     ]
                 ),
-                const TableRow(
+                TableRow(
                     children: [
                       TextTableCell(text: 'No. of pages', t: 13.0),
-                      InputCell(),
+                      //InputCell(),
                       //InputCell(),
                     ]
                 )
@@ -150,16 +155,16 @@ class _PostPressTableState extends State<PostPressTable> {
         )
                   ]
                 ),
-                const TableRow(
+                 TableRow(
                     children: [
                       TextTableCell(text: 'Unit Cost', t: 13.0),
-                      InputCell()
+                      //InputCell()
                     ]
                 ),
-                const TableRow(
+                 TableRow(
                     children: [
                       TextTableCell(text: 'No. of Qty', t: 13.0),
-                      InputCell()
+                      //InputCell()
                     ]
                 ),
               ],
@@ -189,32 +194,32 @@ class _PostPressTableState extends State<PostPressTable> {
                     const TextTableCell(text: 'Cost', t: 13.0)
                   ]
                 ),
-                const TableRow(
+                TableRow(
                   children: [
                     TextTableCell(text: '1', t: 13.0),
                     InputTextCell(),
-                    InputCell()
+                    //InputCell()
                   ]
                 ),
-                const TableRow(
+                TableRow(
                     children: [
                       TextTableCell(text: '2', t: 13.0),
                       InputTextCell(),
-                      InputCell()
+                      //InputCell()
                     ]
                 ),
-                const TableRow(
+                TableRow(
                     children: [
                       TextTableCell(text: '3', t: 13.0),
                       InputTextCell(),
-                      InputCell()
+                      //InputCell()
                     ]
                 ),
-                const TableRow(
+                TableRow(
                     children: [
                       TextTableCell(text: '4', t: 13.0),
                       InputTextCell(),
-                      InputCell()
+                      //InputCell()
                     ]
                 )
               ],
@@ -225,20 +230,20 @@ class _PostPressTableState extends State<PostPressTable> {
 
             //----------End of Miscellaneous Table------------------------
             
-            const TableTopic(text: 'Folding'),
+            TableTopic(text: 'Folding'),
             Table(
               border: TableBorder.all(),
-              children: const [
+              children: [
                 TableRow(
                   children: [
                     TextTableCell(text: 'Cost for folding', t: 13.0),
-                    InputCell(),
+                    //InputCell(),
                   ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'No of Folding', t: 13.0),
-                      InputCell(),
+                      //InputCell(),
                     ]
                 )
               ],
@@ -252,17 +257,17 @@ class _PostPressTableState extends State<PostPressTable> {
             const TableTopic(text: 'Gathering'),
             Table(
               border: TableBorder.all(),
-              children: const [
+              children: [
                 TableRow(
                   children: [
                     TextTableCell(text: 'Cost per Sheet', t: 13.0),
-                    InputCell(),
+                    //InputCell(),
                   ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'No. of sheets', t: 13.0),
-                      InputCell(),
+                      //InputCell(),
                     ]
                 )
               ],
@@ -282,17 +287,17 @@ class _PostPressTableState extends State<PostPressTable> {
             const TableTopic(text: 'Guilotine Cutting'),
             Table(
               border: TableBorder.all(),
-              children: const [
+              children:  [
                 TableRow(
                     children: [
                       TextTableCell(text: 'Cost per unit', t: 13.0),
-                      InputCell(),
+                     // InputCell(),
                     ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'No. of cuts', t: 13.0),
-                      InputCell(),
+                     // InputCell(),
                     ]
                 )
               ],
@@ -306,17 +311,17 @@ class _PostPressTableState extends State<PostPressTable> {
             const TableTopic(text: 'Die Cutting'),
             Table(
               border: TableBorder.all(),
-              children: const [
+              children: [
                 TableRow(
                     children: [
                       TextTableCell(text: 'Cost per unit', t: 13.0),
-                      InputCell(),
+                     // InputCell(),
                     ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'No. of cuts', t: 13.0),
-                      InputCell(),
+                      //InputCell(),
                     ]
                 )
               ],
@@ -342,23 +347,23 @@ class _PostPressTableState extends State<PostPressTable> {
             const TableTopic(text: 'Extra for urgent job'),
             Table(
               border: TableBorder.all(),
-              children: const [
+              children: [
                 TableRow(
                     children: [
                       TextTableCell(text: 'Binding', t: 13.0),
-                      InputCell(),
+                     // InputCell(),
                     ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'OT', t: 13.0),
-                      InputCell(),
+                      //InputCell(),
                     ]
                 ),
                 TableRow(
                     children: [
                       TextTableCell(text: 'Other', t: 13.0),
-                      InputCell(),
+                      //InputCell(),
                     ]
                 )
               ],
