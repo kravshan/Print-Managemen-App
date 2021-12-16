@@ -17,6 +17,7 @@ Future<void> main() async {
       designSize: const Size(1920, 1080),
       builder: () =>
           MaterialApp(
+            debugShowCheckedModeBanner: false,
             initialRoute: '/',
             routes: {
               '/': (context) => Login(),

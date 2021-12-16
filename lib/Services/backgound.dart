@@ -18,7 +18,7 @@ class Background extends StatelessWidget {
                 image: const AssetImage('assets/bg.png'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                    Colors.white.withOpacity(0.5),
+                    Colors.white.withOpacity(0.59),
                     BlendMode.darken
                 )
             )

@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
                         height: 63,
                         child: RaisedButton(
                           onPressed:(){
-                            Navigator.pushReplacementNamed(context, '/enter_details');
+                            Navigator.pushNamed(context, '/enter_details');
                           },
                           child: const Text('Start New'),
                           color: const Color.fromARGB(255, 185, 140, 62),

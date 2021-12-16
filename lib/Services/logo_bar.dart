@@ -5,7 +5,7 @@ class LogoBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.white.withOpacity(0.3),
+    return Container(color: Colors.white.withOpacity(0.48),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: const [
