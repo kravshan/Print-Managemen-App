@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:print_management/Services/backgound.dart';
+import 'package:print_management/Services/logo_bar.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -9,40 +11,68 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.teal[300],
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0.0, 60.h, 0.0, 40.h),
-                  child: Text(
-                    'Print Manager',
-                    style: TextStyle(
-                      color: Colors.teal[700],
-                      fontSize: 40.sp
-                    ),
+    return SafeArea(
+      child: Stack(
+        children: [
+          const Background(),
+          const LogoBar(),
+          Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        width: 218,
+                        height: 63,
+                        child: RaisedButton(
+                          onPressed:(){
+                            Navigator.pushReplacementNamed(context, '/enter_details');
+                          },
+                          child: const Text('Start New'),
+                          color: const Color.fromARGB(255, 185, 140, 62),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 218,
+                        height: 63,
+                        child: RaisedButton(
+                          onPressed:(){
+                          },
+                          child: const Text('Previous QUT'),
+                          color: Color.fromARGB(255, 185, 140, 62),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 218,
+                        height: 63,
+                        child: RaisedButton(
+                          onPressed:(){
+                            Navigator.pushReplacementNamed(context, '/pre_press');
+                          },
+                          child: const Text('Database'),
+                          color: Color.fromARGB(255, 185, 140, 62),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-                SizedBox(height: 16.h,),
-                RaisedButton(
-                  onPressed:(){
-                    Navigator.pushReplacementNamed(context, '/pre_press');
-                  },
-                  child: Text('BEGIN'),
-                  color: Colors.teal[500],
+                  SizedBox(height: 16.h,),
 
-                )
-              ],
+                ],
+              ),
             ),
           ),
-        ),
+        ),]
       ),
     );
   }

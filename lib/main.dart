@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:print_management/Pages/pre_press.dart';
 import 'package:print_management/Pages/press.dart';
 import 'package:print_management/Pages/post_press.dart';
 import 'package:print_management/Pages/login.dart';
+import 'package:print_management/Pages/enter_details.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -18,6 +20,7 @@ Future<void> main() async {
             initialRoute: '/',
             routes: {
               '/': (context) => Login(),
+              '/enter_details': (context) => EnterDetails(),
               '/pre_press': (context) => FutureBuilder(
                 future: Hive.openBox('pre_press'),
                 builder: (BuildContext context, AsyncSnapshot snapshot){
