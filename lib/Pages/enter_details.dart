@@ -163,9 +163,10 @@ class EnterDetails extends StatelessWidget {
                               height: 63,
                               child: RaisedButton(
                                 onPressed:(){
+                                  Navigator.pushNamedAndRemoveUntil(context, '/pre', (route) => false);
                                 },
                                 child: const Text('NEXT'),
-                                color: Color.fromARGB(255, 185, 140, 62),
+                                color: const Color.fromARGB(255, 185, 140, 62),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
                               ),
                             ),
@@ -175,7 +176,7 @@ class EnterDetails extends StatelessWidget {
                               child: RaisedButton(
                                 onPressed:(){Navigator.pop(context);},
                                 child: const Text('DISCARD'),
-                                color: Color.fromARGB(255, 185, 140, 62),
+                                color: const Color.fromARGB(255, 185, 140, 62),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
                               ),
                             ),
@@ -188,7 +189,7 @@ class EnterDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 250, 50, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 250, 50, 0),
                         height: 360,
                         width: 360,
                         child: SfCalendar(

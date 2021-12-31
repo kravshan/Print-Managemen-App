@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:print_management/Page%20Models/pre_model.dart';
+import 'package:print_management/Pages/pre.dart';
 import 'package:print_management/Pages/pre_press.dart';
 import 'package:print_management/Pages/press.dart';
 import 'package:print_management/Pages/post_press.dart';
@@ -13,6 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final document = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(document.path);
+  Hive.registerAdapter(PreModelAdapter());
   runApp(ScreenUtilInit(
       designSize: const Size(1920, 1080),
       builder: () =>
@@ -22,14 +24,14 @@ Future<void> main() async {
             routes: {
               '/': (context) => Login(),
               '/enter_details': (context) => EnterDetails(),
-              '/pre_press': (context) => FutureBuilder(
-                future: Hive.openBox('pre_press'),
+              '/pre': (context) => FutureBuilder(
+                future: Hive.openBox<PreModel>('pre'),
                 builder: (BuildContext context, AsyncSnapshot snapshot){
                   if(snapshot.connectionState == ConnectionState.done){
                     if(snapshot.hasError){
                       return Text(snapshot.error.toString());
                     }else{
-                      return PrePress();
+                      return Pre();
                     }
                   }else{
                     return const Scaffold();
@@ -37,7 +39,7 @@ Future<void> main() async {
                 }
               ),
               '/press': (context) => FutureBuilder(
-                future: Hive.openBox('press'),
+                future: Hive.openBox<PreModel>('press'),
                 builder: (BuildContext context, AsyncSnapshot snapshot){
                   if(snapshot.connectionState == ConnectionState.done){
                     if(snapshot.hasError){
@@ -68,6 +70,3 @@ Future<void> main() async {
           )
   ));
 }
-
-
-
