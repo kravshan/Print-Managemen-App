@@ -34,6 +34,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   path_provider: ^2.0.7
   syncfusion_flutter_calendar: ^19.3.59
+  excel: ^2.0.0-null-safety-3
 
 
 
@@ -45,7 +46,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.1.5
-  hive_generator: ^1.1.1
+  hive_generator: ^1.1.2
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

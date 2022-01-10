@@ -14,10 +14,54 @@ class _PreState extends State<Pre> {
 
   late Box<PreModel> preBox;
 
-  final TextEditingController _paperType = TextEditingController();
-  final TextEditingController _rmsPkt = TextEditingController();
-  final TextEditingController _unitPrice = TextEditingController();
-  final TextEditingController _qty = TextEditingController();
+  final TextEditingController _paperType1 = TextEditingController();
+  final TextEditingController _rmsPkt1 = TextEditingController();
+  final TextEditingController? _unitPrice1 = TextEditingController();
+  final TextEditingController? _qty1 = TextEditingController();
+
+  final TextEditingController _paperType2 = TextEditingController();
+  final TextEditingController _rmsPkt2 = TextEditingController();
+  final TextEditingController? _unitPrice2 = TextEditingController();
+  final TextEditingController? _qty2 = TextEditingController();
+
+  final TextEditingController _paperType3 = TextEditingController();
+  final TextEditingController _rmsPkt3 = TextEditingController();
+  final TextEditingController? _unitPrice3 = TextEditingController();
+  final TextEditingController? _qty3 = TextEditingController();
+
+  final TextEditingController _paperType4 = TextEditingController();
+  final TextEditingController _rmsPkt4 = TextEditingController();
+  final TextEditingController? _unitPrice4 = TextEditingController();
+  final TextEditingController? _qty4 = TextEditingController();
+
+  late String pprTyp1;
+  late String rmspkt1;
+  late double untprce1 = 0;
+  late int qt1 = 0;
+
+  late String pprTyp2;
+  late String rmspkt2;
+  late double untprce2 = 0;
+  late int qt2 = 0;
+
+  late String pprTyp3;
+  late String rmspkt3;
+  late double untprce3 = 0;
+  late int qt3 = 0;
+
+  late String pprTyp4;
+  late String rmspkt4;
+  late double untprce4 = 0;
+  late int qt4 = 0;
+
+  late double result = 0;
+
+  PprTypeCalc(){
+    setState(() {
+
+      result = (untprce1*qt1) + (untprce2*qt2) + (untprce3*qt3) + (untprce4*qt4);
+    });
+  }
 
   @override
   void initState(){
@@ -49,309 +93,503 @@ class _PreState extends State<Pre> {
                       decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.75),
                           borderRadius: BorderRadius.circular(40)),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(20.0),
-                              child: Text(
-                                'Pre-Press',
-                                style: TextStyle(color: Colors.white),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Text(
+                              'Pre-Press',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
+                                    child: Text(
+                                      'Paper/ Board/ Sticker/ Special Paper',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _paperType1,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _paperType2,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _paperType3,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _paperType4,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
+                                    child: Text(
+                                      'RMS/ PKT',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _rmsPkt1,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _rmsPkt2,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _rmsPkt3,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _rmsPkt4,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
+                                    child: Text(
+                                      'Unit Price',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child:TextField(
+                                      controller: _unitPrice1,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _unitPrice2,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _unitPrice3,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _unitPrice4,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
+                                    child: Text(
+                                      'Qty',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _qty1,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _qty2,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _qty3,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.symmetric(vertical: 4),
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      controller: _qty4,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          // ValueListenableBuilder(
+                          //   valueListenable: preBox.listenable(),
+                          //   builder: (context, Box<PreModel> pree, _){
+                          //     List<int> keys = pree.keys.cast<int>().toList();
+                          //     return ListView.separated(
+                          //       itemBuilder: (_, index){
+                          //         print('gotcha1');
+                          //         final int key = keys[index];
+                          //         print('gotcha2');
+                          //         final PreModel? _pre = pree.get(key);
+                          //         print('gotcha3');
+                          //         return Row(
+                          //           children: [
+                          //             Container(
+                          //               padding: EdgeInsets.all(8),
+                          //               height: 44,
+                          //               width: 310,
+                          //               color: Colors.white,
+                          //               child: Text(_pre!.paperType),
+                          //             ),
+                          //             Container(
+                          //               padding: EdgeInsets.all(8),
+                          //               height: 44,
+                          //               width: 310,
+                          //               color: Colors.white,
+                          //               child: Text(_pre.rmsPkt),
+                          //             ),
+                          //             Container(
+                          //               padding: EdgeInsets.all(8),
+                          //               height: 44,
+                          //               width: 310,
+                          //               color: Colors.white,
+                          //               child: Text('${_pre.unitPrice}'),
+                          //             ),
+                          //             Container(
+                          //               padding: EdgeInsets.all(8),
+                          //               height: 44,
+                          //               width: 310,
+                          //               color: Colors.white,
+                          //               child: Text('${_pre.qty}'),
+                          //             )
+                          //           ],
+                          //         );
+                          //       },
+                          //       separatorBuilder: (_, index) => Divider(),
+                          //       itemCount: keys.length,
+                          //       shrinkWrap: true,
+                          //     );
+                          //   }
+                          // ),
+                          // Center(
+                          //   child: RaisedButton(
+                          //     onPressed: () {
+                          //       showDialog(
+                          //           context: context,
+                          //           builder: (context) {
+                          //             return Dialog(
+                          //                 backgroundColor:
+                          //                     Colors.black.withOpacity(0.8),
+                          //                 child: SizedBox(
+                          //                   height: 210,
+                          //                   width: 1500,
+                          //                   child: Row(
+                          //                     mainAxisAlignment:
+                          //                         MainAxisAlignment.spaceAround,
+                          //                     children: [
+                          //                       Column(
+                          //                         children: [
+                          //                           const Padding(
+                          //                             padding:
+                          //                                 EdgeInsets.all(8.0),
+                          //                             child: Text(
+                          //                               'Paper/ Board/ Sticker/ Special Paper',
+                          //                               style: TextStyle(
+                          //                                   color:
+                          //                                       Colors.white),
+                          //                             ),
+                          //                           ),
+                          //                           Container(
+                          //                             height: 44,
+                          //                             width: 310,
+                          //                             color: Colors.white,
+                          //                             child: TextField(
+                          //                               controller: _paperType,
+                          //                               decoration: const InputDecoration(
+                          //                                 border: InputBorder.none,
+                          //                               ),
+                          //                             ),
+                          //                           ),
+                          //                         ],
+                          //                       ),
+                          //                       Column(
+                          //                         children: [
+                          //                           const Padding(
+                          //                             padding:
+                          //                                 EdgeInsets.all(8.0),
+                          //                             child: Text(
+                          //                               'RMS/ PKT',
+                          //                               style: TextStyle(
+                          //                                   color: Colors.white),
+                          //                             ),
+                          //                           ),
+                          //                           Container(
+                          //                             height: 44,
+                          //                             width: 310,
+                          //                             color: Colors.white,
+                          //                             child: TextField(
+                          //                               controller: _rmsPkt,
+                          //                               decoration: const InputDecoration(
+                          //                                 border: InputBorder.none,
+                          //                               ),
+                          //                             ),
+                          //                           ),
+                          //                           const SizedBox(height: 40,),
+                          //                           Container(
+                          //                             width: 218,
+                          //                             height: 63,
+                          //                             child: RaisedButton(
+                          //                               onPressed: () {
+                          //                                 final String pprType = _paperType.text;
+                          //                                 final String rmspkt = _rmsPkt.text;
+                          //                                 final double untprce = double.parse(_unitPrice.text);
+                          //                                 final int qty = int.parse(_qty.text);
+                          //
+                          //                                 PreModel pre = PreModel(pprType, rmspkt, untprce, qty);
+                          //                                 preBox.add(pre);
+                          //
+                          //                                 Navigator.pop(context);
+                          //                               },
+                          //                               child: const Text('ADD'),
+                          //                               color: const Color.fromARGB(255, 185, 140, 62),
+                          //                               shape: RoundedRectangleBorder(
+                          //                                   borderRadius: BorderRadius.circular(57)),
+                          //                             ),
+                          //                           ),
+                          //                         ],
+                          //                       ),
+                          //                       Column(
+                          //                         children: [
+                          //                           const Padding(
+                          //                             padding:
+                          //                                 EdgeInsets.all(8.0),
+                          //                             child: Text(
+                          //                               'Unit Price',
+                          //                               style: TextStyle(
+                          //                                   color:
+                          //                                       Colors.white),
+                          //                             ),
+                          //                           ),
+                          //                           Container(
+                          //                             height: 44,
+                          //                             width: 310,
+                          //                             color: Colors.white,
+                          //                             child: TextField(
+                          //                               controller: _unitPrice,
+                          //                               decoration: const InputDecoration(
+                          //                                 border: InputBorder.none,
+                          //                               ),
+                          //                             ),
+                          //                           ),
+                          //                           SizedBox(height: 40,),
+                          //                           Container(
+                          //                             width: 218,
+                          //                             height: 63,
+                          //                             child: RaisedButton(
+                          //                               onPressed: () {
+                          //                                 Navigator.pop(context);
+                          //                               },
+                          //                               child: const Text('CANCEL'),
+                          //                               color: const Color.fromARGB(255, 185, 140, 62),
+                          //                               shape: RoundedRectangleBorder(
+                          //                                   borderRadius: BorderRadius.circular(57)),
+                          //                             ),
+                          //                           ),
+                          //                         ],
+                          //                       ),
+                          //                       Column(
+                          //                         children: [
+                          //                           const Padding(
+                          //                             padding:
+                          //                                 EdgeInsets.all(8.0),
+                          //                             child: Text(
+                          //                               'Qty',
+                          //                               style: TextStyle(
+                          //                                   color:
+                          //                                       Colors.white),
+                          //                             ),
+                          //                           ),
+                          //                           Container(
+                          //                             height: 44,
+                          //                             width: 310,
+                          //                             color: Colors.white,
+                          //                             child: TextField(
+                          //                               decoration: const InputDecoration(
+                          //                                 border: InputBorder.none,
+                          //                               ),
+                          //                               controller: _qty,
+                          //                             ),
+                          //                           ),
+                          //                         ],
+                          //                       ),
+                          //                     ],
+                          //                   ),
+                          //                 ));
+                          //           });
+                          //     },
+                          //     child: const Text('Add New'),
+                          //     shape: RoundedRectangleBorder(
+                          //         borderRadius: BorderRadius.circular(57)),
+                          //   ),
+                          // )
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(0, 150, 20, 0),
+                              height: 100,
+                              width: 400,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
+                                    child: Text(
+                                      'Paper/ Board/ Sticker Cost',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 44,
+                                    width: 310,
+                                    color: Colors.white,
+                                    child: Text('${result}'),
+                                  )
+                                ],
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: const [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Paper/ Board/ Sticker/ Special Paper',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'RMS/ PKT',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Unit Price',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Qty',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  height: 44,
-                                  width: 310,
-                                  color: Colors.white,
-                                  child: const TextField(
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  height: 44,
-                                  width: 310,
-                                  color: Colors.white,
-                                  child: const TextField(
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  height: 44,
-                                  width: 310,
-                                  color: Colors.white,
-                                  child: const TextField(
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  height: 44,
-                                  width: 310,
-                                  color: Colors.white,
-                                  child: const TextField(
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            ValueListenableBuilder(
-                              valueListenable: preBox.listenable(),
-                              builder: (context, Box<PreModel> pree, _){
-                                List<int> keys = pree.keys.cast<int>().toList();
-                                return SizedBox(
-                                  height: 500,
-                                  width: 1350,
-                                  child: ListView.separated(
-                                    itemBuilder: (_, index){
-                                      final int key = keys[index];
-                                      final PreModel? pre = pree.get(key);
-                                      return Row(
-                                        children: [
-                                          Container(
-                                            height: 44,
-                                            width: 310,
-                                            color: Colors.white,
-                                            child: Text(pre!.paperType),
-                                          ),
-                                          Container(
-                                            height: 44,
-                                            width: 310,
-                                            color: Colors.white,
-                                            child: Text(pre.rmsPkt),
-                                          ),
-                                          Container(
-                                            height: 44,
-                                            width: 310,
-                                            color: Colors.white,
-                                            child: Text('${pre.unitPrice}'),
-                                          ),
-                                          Container(
-                                            height: 44,
-                                            width: 310,
-                                            color: Colors.white,
-                                            child: Text('${pre.qty}'),
-                                          )
-                                        ],
-                                      );
-                                    },
-                                    separatorBuilder: (_, index) => Divider(),
-                                    itemCount: keys.length
-                                  ),
-                                );
-                              }
-                            ),
-                            Center(
-                              child: RaisedButton(
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return Dialog(
-                                            backgroundColor:
-                                                Colors.black.withOpacity(0.8),
-                                            child: SizedBox(
-                                              height: 210,
-                                              width: 1500,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.spaceAround,
-                                                children: [
-                                                  Column(
-                                                    children: [
-                                                      const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'Paper/ Board/ Sticker/ Special Paper',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        height: 44,
-                                                        width: 310,
-                                                        color: Colors.white,
-                                                        child: TextField(
-                                                          controller: _paperType,
-                                                          decoration: const InputDecoration(
-                                                            border: InputBorder.none,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'RMS/ PKT',
-                                                          style: TextStyle(
-                                                              color: Colors.white),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        height: 44,
-                                                        width: 310,
-                                                        color: Colors.white,
-                                                        child: TextField(
-                                                          controller: _rmsPkt,
-                                                          decoration: const InputDecoration(
-                                                            border: InputBorder.none,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(height: 40,),
-                                                      Container(
-                                                        width: 218,
-                                                        height: 63,
-                                                        child: RaisedButton(
-                                                          onPressed: () {
-                                                            final String pprType = _paperType.text;
-                                                            final String rmspkt = _rmsPkt.text;
-                                                            final untprce = double.parse(_unitPrice.text);
-                                                            final qty = int.parse(_qty.value.text);
-
-                                                            PreModel pre = PreModel(pprType, rmspkt, untprce, qty);
-                                                            preBox.add(pre);
-                                                            Navigator.pop(context);
-                                                          },
-                                                          child: const Text('ADD'),
-                                                          color: const Color.fromARGB(255, 185, 140, 62),
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.circular(57)),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'Unit Price',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        height: 44,
-                                                        width: 310,
-                                                        color: Colors.white,
-                                                        child: TextField(
-                                                          controller: _unitPrice,
-                                                          decoration: const InputDecoration(
-                                                            border: InputBorder.none,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 40,),
-                                                      Container(
-                                                        width: 218,
-                                                        height: 63,
-                                                        child: RaisedButton(
-                                                          onPressed: () {
-                                                            Navigator.pop(context);
-                                                          },
-                                                          child: const Text('CANCEL'),
-                                                          color: const Color.fromARGB(255, 185, 140, 62),
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.circular(57)),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'Qty',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        height: 44,
-                                                        width: 310,
-                                                        color: Colors.white,
-                                                        child: TextField(
-                                                          decoration: const InputDecoration(
-                                                            border: InputBorder.none,
-                                                          ),
-                                                          controller: _qty,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ));
-                                      });
-                                },
-                                child: const Text('Add New'),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(57)),
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -364,10 +602,85 @@ class _PreState extends State<Pre> {
                       height: 63,
                       child: RaisedButton(
                         onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, '/pre', (route) => false);
+                          pprTyp1 = _paperType1.text;
+                          rmspkt1 = _rmsPkt1.text;
+                          if(_unitPrice1 == null){
+                            untprce1 = 0.0;
+                          }else{
+                            untprce1 = double.parse(_unitPrice1!.text);
+                          }
+                          if(_qty1 == null){
+                            qt1 = 0;
+                          }else{
+                            qt1 = int.parse(_qty1!.text);
+                          }
+
+                          pprTyp2 = _paperType2.text;
+                          rmspkt2 = _rmsPkt2.text;
+                          if(_unitPrice2 != null){
+                            untprce2 = double.parse(_unitPrice2!.text);
+                          }else{
+                            untprce2 = 0.0;
+                          }
+                          if(_qty2 != null){
+                            qt2 = int.parse(_qty2!.text);
+                          }else{
+                            qt2 = 0;
+                          }
+
+                          pprTyp3 = _paperType3.text;
+                          rmspkt3 = _rmsPkt3.text;
+                          if(_unitPrice3 != null){
+                            untprce3 = double.parse(_unitPrice3!.text);
+                          }else{
+                            untprce3 = 0.0;
+                          }
+                          if(_qty3 != null){
+                            qt3 = int.parse(_qty3!.text);
+                          }else{
+                            qt3 = 0;
+                          }
+
+                          pprTyp4 = _paperType4.text;
+                          rmspkt4 = _rmsPkt4.text;
+                          if(_unitPrice4 != null){
+                            untprce4 = double.parse(_unitPrice4!.text);
+                          }else{
+                            untprce4 = 0.0;
+                          }
+                          if(_qty4 != null){
+                            qt4 = int.parse(_qty4!.text);
+                          }else{
+                            qt4 = 0;
+                          }
+
+                          PreModel pre1 = PreModel(pprTyp1, rmspkt1, untprce1, qt1);
+                          PreModel pre2 = PreModel(pprTyp2, rmspkt2, untprce2, qt2);
+                          PreModel pre3 = PreModel(pprTyp3, rmspkt3, untprce3, qt3);
+                          PreModel pre4 = PreModel(pprTyp4, rmspkt4, untprce4, qt4);
+
+                          preBox.put('pre1', pre1);
+                          preBox.put('pre2', pre2);
+                          preBox.put('pre3', pre3);
+                          preBox.put('pre4', pre4);
+
+                          PprTypeCalc();
                         },
-                        child: const Text('NEXT'),
+                        child: const Text('Calculate'),
+                        color: const Color.fromARGB(255, 185, 140, 62),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(57)),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 218,
+                      height: 63,
+                      child: RaisedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, '/pre2');
+                        },
+                        child: const Text('Next'),
                         color: const Color.fromARGB(255, 185, 140, 62),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(57)),
@@ -380,7 +693,7 @@ class _PreState extends State<Pre> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text('DISCARD'),
+                        child: const Text('BACK'),
                         color: const Color.fromARGB(255, 185, 140, 62),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(57)),
