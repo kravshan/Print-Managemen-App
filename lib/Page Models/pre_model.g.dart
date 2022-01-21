@@ -18,9 +18,8 @@ class PreModelAdapter extends TypeAdapter<PreModel> {
     };
     return PreModel(
       fields[0] as String,
-      fields[1] as String,
+      fields[1] as int,
       fields[2] as double,
-      fields[3] as int,
     );
   }
 
@@ -33,9 +32,7 @@ class PreModelAdapter extends TypeAdapter<PreModel> {
       ..writeByte(1)
       ..write(obj.rmsPkt)
       ..writeByte(2)
-      ..write(obj.unitPrice)
-      ..writeByte(3)
-      ..write(obj.qty);
+      ..write(obj.unitPrice);
   }
 
   @override

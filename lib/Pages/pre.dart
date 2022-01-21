@@ -17,49 +17,52 @@ class _PreState extends State<Pre> {
   final TextEditingController _paperType1 = TextEditingController();
   final TextEditingController _rmsPkt1 = TextEditingController();
   final TextEditingController? _unitPrice1 = TextEditingController();
-  final TextEditingController? _qty1 = TextEditingController();
 
   final TextEditingController _paperType2 = TextEditingController();
   final TextEditingController _rmsPkt2 = TextEditingController();
   final TextEditingController? _unitPrice2 = TextEditingController();
-  final TextEditingController? _qty2 = TextEditingController();
 
   final TextEditingController _paperType3 = TextEditingController();
   final TextEditingController _rmsPkt3 = TextEditingController();
   final TextEditingController? _unitPrice3 = TextEditingController();
-  final TextEditingController? _qty3 = TextEditingController();
 
   final TextEditingController _paperType4 = TextEditingController();
   final TextEditingController _rmsPkt4 = TextEditingController();
   final TextEditingController? _unitPrice4 = TextEditingController();
-  final TextEditingController? _qty4 = TextEditingController();
 
   late String pprTyp1;
-  late String rmspkt1;
+  late int rmspkt1;
   late double untprce1 = 0;
   late int qt1 = 0;
 
   late String pprTyp2;
-  late String rmspkt2;
+  late int rmspkt2;
   late double untprce2 = 0;
   late int qt2 = 0;
 
   late String pprTyp3;
-  late String rmspkt3;
+  late int rmspkt3;
   late double untprce3 = 0;
   late int qt3 = 0;
 
   late String pprTyp4;
-  late String rmspkt4;
+  late int rmspkt4;
   late double untprce4 = 0;
   late int qt4 = 0;
 
   late double result = 0;
+  late double q1 = 0;
+  late double q2 = 0;
+  late double q3 = 0;
+  late double q4 = 0;
 
   PprTypeCalc(){
     setState(() {
-
-      result = (untprce1*qt1) + (untprce2*qt2) + (untprce3*qt3) + (untprce4*qt4);
+      q1 = (untprce1*rmspkt1);
+      q2 = (untprce2*rmspkt2);
+      q3 = (untprce3*rmspkt3);
+      q4 = (untprce4*rmspkt4);
+      result = q1 + q2 + q3 + q4;
     });
   }
 
@@ -302,49 +305,29 @@ class _PreState extends State<Pre> {
                                     height: 44,
                                     width: 310,
                                     color: Colors.white,
-                                    child: TextField(
-                                      controller: _qty1,
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
+                                    child: Text('$q1'),
                                   ),
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 4),
                                     height: 44,
                                     width: 310,
                                     color: Colors.white,
-                                    child: TextField(
-                                      controller: _qty2,
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
+                                    child: Text('$q2'),
                                   ),
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 4),
                                     height: 44,
                                     width: 310,
                                     color: Colors.white,
-                                    child: TextField(
-                                      controller: _qty3,
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
+                                    child: Text('$q3'),
                                   ),
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 4),
                                     height: 44,
                                     width: 310,
                                     color: Colors.white,
-                                    child: TextField(
-                                      controller: _qty4,
-                                      decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                  ),
+                                    child: Text('$q4'),
+                                  )
                                 ],
                               ),
                             ],
@@ -603,61 +586,41 @@ class _PreState extends State<Pre> {
                       child: RaisedButton(
                         onPressed: () {
                           pprTyp1 = _paperType1.text;
-                          rmspkt1 = _rmsPkt1.text;
+                          rmspkt1 = int.parse(_rmsPkt1.text);
                           if(_unitPrice1 == null){
                             untprce1 = 0.0;
                           }else{
                             untprce1 = double.parse(_unitPrice1!.text);
                           }
-                          if(_qty1 == null){
-                            qt1 = 0;
-                          }else{
-                            qt1 = int.parse(_qty1!.text);
-                          }
 
                           pprTyp2 = _paperType2.text;
-                          rmspkt2 = _rmsPkt2.text;
+                          rmspkt2 = int.parse(_rmsPkt2.text);
                           if(_unitPrice2 != null){
                             untprce2 = double.parse(_unitPrice2!.text);
                           }else{
                             untprce2 = 0.0;
                           }
-                          if(_qty2 != null){
-                            qt2 = int.parse(_qty2!.text);
-                          }else{
-                            qt2 = 0;
-                          }
 
                           pprTyp3 = _paperType3.text;
-                          rmspkt3 = _rmsPkt3.text;
+                          rmspkt3 = int.parse(_rmsPkt3.text);
                           if(_unitPrice3 != null){
                             untprce3 = double.parse(_unitPrice3!.text);
                           }else{
                             untprce3 = 0.0;
                           }
-                          if(_qty3 != null){
-                            qt3 = int.parse(_qty3!.text);
-                          }else{
-                            qt3 = 0;
-                          }
 
                           pprTyp4 = _paperType4.text;
-                          rmspkt4 = _rmsPkt4.text;
+                          rmspkt4 = int.parse(_rmsPkt4.text);
                           if(_unitPrice4 != null){
                             untprce4 = double.parse(_unitPrice4!.text);
                           }else{
                             untprce4 = 0.0;
                           }
-                          if(_qty4 != null){
-                            qt4 = int.parse(_qty4!.text);
-                          }else{
-                            qt4 = 0;
-                          }
 
-                          PreModel pre1 = PreModel(pprTyp1, rmspkt1, untprce1, qt1);
-                          PreModel pre2 = PreModel(pprTyp2, rmspkt2, untprce2, qt2);
-                          PreModel pre3 = PreModel(pprTyp3, rmspkt3, untprce3, qt3);
-                          PreModel pre4 = PreModel(pprTyp4, rmspkt4, untprce4, qt4);
+                          PreModel pre1 = PreModel(pprTyp1, rmspkt1, untprce1);
+                          PreModel pre2 = PreModel(pprTyp2, rmspkt2, untprce2);
+                          PreModel pre3 = PreModel(pprTyp3, rmspkt3, untprce3);
+                          PreModel pre4 = PreModel(pprTyp4, rmspkt4, untprce4);
 
                           preBox.put('pre1', pre1);
                           preBox.put('pre2', pre2);

@@ -7,11 +7,9 @@ class PreModel{
   @HiveField(0)
   late String paperType;
   @HiveField(1)
-  late String rmsPkt;
+  late int rmsPkt;
   @HiveField(2)
   late double unitPrice;
-  @HiveField(3)
-  late int qty;
 
-  PreModel(this.paperType, this.rmsPkt, this.unitPrice, this.qty);
+  PreModel(this.paperType, this.rmsPkt, this.unitPrice);
 }

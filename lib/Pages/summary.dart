@@ -27,22 +27,22 @@ class _SummaryState extends State<Summary> {
   late String job;
 
   late String pprType1 = '';
-  late String rmsPkt1 = '';
+  late int rmsPkt1 = 0;
   late double? unitPrice1 = 0;
   late int? qty1 = 0;
 
   late String pprType2 = '';
-  late String rmsPkt2 = '';
+  late int rmsPkt2 = 0;
   late double? unitPrice2 = 0;
   late int? qty2 = 0;
 
   late String pprType3 = '';
-  late String rmsPkt3 = '';
+  late int rmsPkt3 = 0;
   late double? unitPrice3 = 0;
   late int? qty3 = 0;
 
   late String pprType4 = '';
-  late String rmsPkt4 = '';
+  late int rmsPkt4 = 0;
   late double? unitPrice4 = 0;
   late int? qty4 = 0;
 
@@ -70,22 +70,18 @@ class _SummaryState extends State<Summary> {
     pprType1 = preBox.get('pre1')!.paperType;
     rmsPkt1 = preBox.get('pre1')!.rmsPkt;
     unitPrice1 = preBox.get('pre1')!.unitPrice;
-    qty1 = preBox.get('pre1')!.qty;
 
     pprType2 = preBox.get('pre2')!.paperType;
     rmsPkt2 = preBox.get('pre2')!.rmsPkt;
     unitPrice2 = preBox.get('pre2')!.unitPrice;
-    qty2 = preBox.get('pre2')!.qty;
 
     pprType3 = preBox.get('pre3')!.paperType;
     rmsPkt3 = preBox.get('pre3')!.rmsPkt;
     unitPrice3 = preBox.get('pre3')!.unitPrice;
-    qty3 = preBox.get('pre3')!.qty;
 
     pprType4 = preBox.get('pre4')!.paperType;
     rmsPkt4 = preBox.get('pre4')!.rmsPkt;
     unitPrice4 = preBox.get('pre4')!.unitPrice;
-    qty4 = preBox.get('pre4')!.qty;
   }
 
   void getpre2Box(){
@@ -159,12 +155,6 @@ class _SummaryState extends State<Summary> {
     sheet.cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: 19)).value = desuniprce;
     sheet.cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: 20)).value = profuniprce;
     sheet.cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: 21)).value = trauniprce;
-
-    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: 7)).value = 'QTY';
-    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: 8)).value = qty1;
-    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: 9)).value = qty2;
-    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: 10)).value = qty3;
-    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 3, rowIndex: 11)).value = qty4;
 
     sheet.cell(CellIndex.indexByColumnRow(columnIndex: 1, rowIndex: 13)).value = 'Total Paper Cost';
     sheet.cell(CellIndex.indexByColumnRow(columnIndex: 2, rowIndex: 13)).value = paperCost;
