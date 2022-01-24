@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:print_management/Page%20Models/pre2_model.dart';
 import 'package:print_management/Services/backgound.dart';
 import 'package:print_management/Services/logo_bar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class Pre2 extends StatefulWidget {
+  const Pre2({Key? key}) : super(key: key);
+
   @override
   _Pre2State createState() => _Pre2State();
 }
@@ -79,63 +82,67 @@ class _Pre2State extends State<Pre2> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.fromLTRB(10, 50, 0, 20),
-                  width: 1500,
-                  height: 750,
+                  margin: EdgeInsets.fromLTRB(10.w, 50.h, 0, 150.h),
+                  width: 1500.w,
+                  height: 750.h,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      height: 600,
-                      width: 1350,
+                      height: 600.h,
+                      width: 1350.w,
                       decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.75),
-                          borderRadius: BorderRadius.circular(40)),
+                          borderRadius: BorderRadius.circular(40.r)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.all(20.0),
+                          Padding(
+                            padding: EdgeInsets.all(20.sp),
                             child: Text(
                               'Pre-Press',
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                              ),
                             ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Column(
-                                children: const [
+                                children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 19.0),
-                                    child: Text('Type Setting', style: TextStyle(color: Colors.white),),
+                                    padding: EdgeInsets.symmetric(vertical: 19.h),
+                                    child: Text('Type Setting', style: TextStyle(color: Colors.white, fontSize: 16.sp,),),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 19.0),
-                                    child: Text('Photography', style: TextStyle(color: Colors.white),),
+                                    padding: EdgeInsets.symmetric(vertical: 19.h),
+                                    child: Text('Photography', style: TextStyle(color: Colors.white, fontSize: 16.sp,),),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 19.0),
-                                    child: Text('Design', style: TextStyle(color: Colors.white),),
+                                    padding: EdgeInsets.symmetric(vertical: 19.h),
+                                    child: Text('Design', style: TextStyle(color: Colors.white, fontSize: 16.sp,),),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 19.0),
-                                    child: Text('Proofing', style: TextStyle(color: Colors.white),),
+                                    padding: EdgeInsets.symmetric(vertical: 19.h),
+                                    child: Text('Proofing', style: TextStyle(color: Colors.white, fontSize: 16.sp,),),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 19.0),
-                                    child: Text('Translations', style: TextStyle(color: Colors.white),),
+                                    padding: EdgeInsets.symmetric(vertical: 19.h),
+                                    child: Text('Translations', style: TextStyle(color: Colors.white, fontSize: 16.sp,),),
                                   ),
                                 ],
                               ),
                               Column(
                                 children: [
-                                  Text('Units', style: TextStyle(color: Colors.white),),
+                                  Text('Units', style: TextStyle(color: Colors.white, fontSize: 16.sp,),),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _typeUnit,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -143,11 +150,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _photoUnit,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -155,11 +163,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _designUnit,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -167,11 +176,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _proofUnit,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -179,11 +189,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _transUnit,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -194,13 +205,14 @@ class _Pre2State extends State<Pre2> {
                               ),
                               Column(
                                 children: [
-                                  Text('Unit Price', style: TextStyle(color: Colors.white),),
+                                  Text('Unit Price', style: TextStyle(color: Colors.white,fontSize: 16.sp,),),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _typeUnitPrice,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -208,11 +220,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _photoUnitPrice,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -220,11 +233,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _designUnitPrice,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -232,11 +246,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _proofUnitPrice,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -244,11 +259,12 @@ class _Pre2State extends State<Pre2> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: TextField(
+                                      textAlignVertical: TextAlignVertical.bottom,
                                       controller: _transUnitPrice,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -259,39 +275,39 @@ class _Pre2State extends State<Pre2> {
                               ),
                               Column(
                                 children: [
-                                  Text('QTY', style: TextStyle(color: Colors.white),),
+                                  Text('QTY', style: TextStyle(color: Colors.white, fontSize: 16.sp,),),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: Text('${qty1}')
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: Text('${qty2}')
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: Text('${qty3}')
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: Text('${qty4}')
                                   ),
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 4),
-                                    height: 44,
-                                    width: 310,
+                                    margin: EdgeInsets.symmetric(vertical: 4.h),
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: Text('${qty5}')
                                   ),
@@ -302,21 +318,24 @@ class _Pre2State extends State<Pre2> {
                           Align(
                             alignment: Alignment.bottomRight,
                             child: Container(
-                              margin: EdgeInsets.fromLTRB(0, 150, 20, 0),
-                              height: 100,
-                              width: 400,
+                              margin: EdgeInsets.fromLTRB(0, 150.h, 20, 0),
+                              height: 100.h,
+                              width: 400.w,
                               child: Column(
                                 children: [
-                                  const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8.h, 8.w, 4.h),
                                     child: Text(
                                       'Total Pre-Press Cost',
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16.sp,
+                                      ),
                                     ),
                                   ),
                                   Container(
-                                    height: 44,
-                                    width: 310,
+                                    height: 44.h,
+                                    width: 310.w,
                                     color: Colors.white,
                                     child: Text('${resultpre2}'),
                                   )
@@ -333,8 +352,8 @@ class _Pre2State extends State<Pre2> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      width: 218,
-                      height: 63,
+                      width: 218.w,
+                      height: 63.h,
                       child: RaisedButton(
                         onPressed: () {
                           typuni = int.parse(_typeUnit.text);
@@ -358,36 +377,54 @@ class _Pre2State extends State<Pre2> {
 
                           pre2Calc();
                         },
-                        child: const Text('Calculate'),
+                        child: Text('Calculate',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
                         color: const Color.fromARGB(255, 185, 140, 62),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(57)),
+                            borderRadius: BorderRadius.circular(57.r)),
                       ),
                     ),
                     SizedBox(
-                      width: 218,
-                      height: 63,
+                      width: 218.w,
+                      height: 63.h,
                       child: RaisedButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/summary');
                         },
-                        child: const Text('Next'),
+                        child: Text('Next',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
                         color: const Color.fromARGB(255, 185, 140, 62),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(57)),
+                            borderRadius: BorderRadius.circular(57.r)),
                       ),
                     ),
                     SizedBox(
-                      width: 218,
-                      height: 63,
+                      width: 218.w,
+                      height: 63.h,
                       child: RaisedButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text('BACK'),
+                        child: Text('BACK',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
                         color: const Color.fromARGB(255, 185, 140, 62),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(57)),
+                            borderRadius: BorderRadius.circular(57.r)),
                       ),
                     ),
                   ],

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:print_management/Page%20Models/details_model.dart';
 import 'package:print_management/Page%20Models/pre2_model.dart';
 import 'package:print_management/Page%20Models/pre_model.dart';
@@ -10,6 +11,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:excel/excel.dart';
 
 class Summary extends StatefulWidget {
+  const Summary({Key? key}) : super(key: key);
+
   @override
   State<Summary> createState() => _SummaryState();
 }
@@ -29,22 +32,22 @@ class _SummaryState extends State<Summary> {
   late String pprType1 = '';
   late int rmsPkt1 = 0;
   late double? unitPrice1 = 0;
-  late int? qty1 = 0;
+  late double? qty1 = 0;
 
   late String pprType2 = '';
   late int rmsPkt2 = 0;
   late double? unitPrice2 = 0;
-  late int? qty2 = 0;
+  late double? qty2 = 0;
 
   late String pprType3 = '';
   late int rmsPkt3 = 0;
   late double? unitPrice3 = 0;
-  late int? qty3 = 0;
+  late double? qty3 = 0;
 
   late String pprType4 = '';
   late int rmsPkt4 = 0;
   late double? unitPrice4 = 0;
-  late int? qty4 = 0;
+  late double? qty4 = 0;
 
   late double? totalPaper = 0;
 
@@ -70,18 +73,22 @@ class _SummaryState extends State<Summary> {
     pprType1 = preBox.get('pre1')!.paperType;
     rmsPkt1 = preBox.get('pre1')!.rmsPkt;
     unitPrice1 = preBox.get('pre1')!.unitPrice;
+    qty1 = rmsPkt1*unitPrice1!;
 
     pprType2 = preBox.get('pre2')!.paperType;
     rmsPkt2 = preBox.get('pre2')!.rmsPkt;
     unitPrice2 = preBox.get('pre2')!.unitPrice;
+    qty2 = rmsPkt2*unitPrice2!;
 
     pprType3 = preBox.get('pre3')!.paperType;
     rmsPkt3 = preBox.get('pre3')!.rmsPkt;
     unitPrice3 = preBox.get('pre3')!.unitPrice;
+    qty3 = rmsPkt3*unitPrice3!;
 
     pprType4 = preBox.get('pre4')!.paperType;
     rmsPkt4 = preBox.get('pre4')!.rmsPkt;
     unitPrice4 = preBox.get('pre4')!.unitPrice;
+    qty4 = rmsPkt4*unitPrice4!;
   }
 
   void getpre2Box(){
@@ -101,7 +108,7 @@ class _SummaryState extends State<Summary> {
     final excel = Excel.createExcel();
     final sheet = excel[excel.getDefaultSheet()!];
 
-    final paperCost = (unitPrice1!*qty1!) +(unitPrice2!*qty2!) + (unitPrice3!*qty3!) + (unitPrice4!*qty4!);
+    final paperCost = (unitPrice1!*rmsPkt1) +(unitPrice2!*rmsPkt2) + (unitPrice3!*rmsPkt3) + (unitPrice4!*rmsPkt4);
     final workCost = (typuni!*typuniprce!) + (potouni!*potouniprce!) + (desuni!*desuniprce!) + (profuni!*profuniprce!) + (trauni!*trauniprce!);
     final totalCost = paperCost+workCost;
 
@@ -190,428 +197,449 @@ class _SummaryState extends State<Summary> {
           backgroundColor: Colors.transparent,
           body: Align(
             alignment: Alignment.center,
-            child: Container(
-                margin: EdgeInsets.fromLTRB(0, 120, 0, 0),
-                height: 700,
-                width: 1350,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.75),
-                  borderRadius: BorderRadius.circular(40)
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Text('Summary',
-                        style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children:  [
-                                Text('Date: $date',
-                                  style: TextStyle(color: Colors.white, fontSize: 20),),
-                                Text('Quotation No: $quotation',
-                                  style: TextStyle(color: Colors.white, fontSize: 20),),
-                                Text('Client Name: $name',
-                                  style: TextStyle(color: Colors.white, fontSize: 20),),
-                                Text('Job Description: $job',
-                                  style: TextStyle(color: Colors.white, fontSize: 20),),
-                              ],
+            child: Column(
+              children: [
+                Container(
+                    margin: EdgeInsets.fromLTRB(0, 170.h, 0, 80.h),
+                    height: 700.h,
+                    width: 1350.w,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.75),
+                      borderRadius: BorderRadius.circular(40.r)
+                    ),
+                    child: Column(
+                      children: [
+                        Text('Summary',
+                          style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.w700),),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(16.sp),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children:  [
+                                  Text('Date: $date',
+                                    style: TextStyle(color: Colors.white, fontSize: 20.sp),),
+                                  Text('Quotation No: $quotation',
+                                    style: TextStyle(color: Colors.white, fontSize: 20.sp),),
+                                  Text('Client Name: $name',
+                                    style: TextStyle(color: Colors.white, fontSize: 20.sp),),
+                                  Text('Job Description: $job',
+                                    style: TextStyle(color: Colors.white, fontSize: 20.sp),),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
-                                  child: Text(
-                                    'Paper/ Board/ Sticker/ Special Paper',
-                                    style: TextStyle(color: Colors.white),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.sp),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8.h, 8.w, 4.h),
+                                    child: Text(
+                                      'Paper/ Board/ Sticker/ Special Paper',
+                                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$pprType1'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$pprType2'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$pprType3'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$pprType4'),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
-                                  child: Text(
-                                    'RMS/PKT',
-                                    style: TextStyle(color: Colors.white),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$pprType1'),
                                   ),
-                                ),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$rmsPkt1'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$rmsPkt2'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$rmsPkt3'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$rmsPkt4'),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
-                                  child: Text(
-                                    'Unit Price',
-                                    style: TextStyle(color: Colors.white),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$pprType2'),
                                   ),
-                                ),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$unitPrice1'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$unitPrice2'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$unitPrice3'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$unitPrice4'),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 8, 8, 4),
-                                  child: Text(
-                                    'Qty',
-                                    style: TextStyle(color: Colors.white),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$pprType3'),
                                   ),
-                                ),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$qty1'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$qty2'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$qty3'),
-                                ),
-                                SizedBox(height: 8,),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('$qty4'),
-                                )
-                              ],
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$pprType4'),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          Column(
-                            children: [
-                              Text('Total Paper Cost',
-                                style: TextStyle(color: Colors.white),
+                            Padding(
+                              padding: EdgeInsets.all(8.sp),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8.h, 8.w, 4.h),
+                                    child: Text(
+                                      'RMS/PKT',
+                                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$rmsPkt1'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$rmsPkt2'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$rmsPkt3'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$rmsPkt4'),
+                                  )
+                                ],
                               ),
-                              Container(
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('${(unitPrice1!*qty1!) +(unitPrice2!*qty2!) + (unitPrice3!*qty3!) + (unitPrice4!*qty4!)}'),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 19.0),
-                                child: Text('Type Setting', style: TextStyle(color: Colors.white),),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(8.sp),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8.h, 8.w, 4.h),
+                                    child: Text(
+                                      'Unit Price',
+                                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$unitPrice1'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$unitPrice2'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$unitPrice3'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$unitPrice4'),
+                                  )
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 19.0),
-                                child: Text('Photography', style: TextStyle(color: Colors.white),),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(8.sp),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 8.h, 8.w, 4.h),
+                                    child: Text(
+                                      'Qty',
+                                      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$qty1'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$qty2'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$qty3'),
+                                  ),
+                                  SizedBox(height: 8.h,),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('$qty4'),
+                                  )
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 19.0),
-                                child: Text('Design', style: TextStyle(color: Colors.white),),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 19.0),
-                                child: Text('Proofing', style: TextStyle(color: Colors.white),),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 19.0),
-                                child: Text('Translations', style: TextStyle(color: Colors.white),),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$typuni'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$potouni'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$desuni'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$profuni'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$trauni'),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$typuniprce'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$potouniprce'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$desuniprce'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$profuniprce'),
-                              ),
-                              Container(
-                                margin: EdgeInsets.all(4),
-                                height: 44,
-                                width: 250,
-                                color: Colors.white,
-                                child: Text('$trauniprce'),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
+                            ),
+                            Column(
                               children: [
-                                Text('Total Work Cost',
-                                  style: TextStyle(color: Colors.white),
+                                Text('Total Paper Cost',
+                                  style: TextStyle(color: Colors.white,fontSize: 14.sp),
                                 ),
                                 Container(
-                                  height: 44,
-                                  width: 250,
+                                  height: 44.h,
+                                  width: 250.w,
                                   color: Colors.white,
-                                  child: Text('${(typuni!*typuniprce!) +
-                                      (potouni!*potouniprce!) +
-                                      (desuni!*desuniprce!) +
-                                      (profuni!*profuniprce!) +
-                                        (trauni!*trauniprce!)
-                                  }'),
+                                  child: Text('${(unitPrice1!*qty1!) +(unitPrice2!*qty2!) + (unitPrice3!*qty3!) + (unitPrice4!*qty4!)}'),
                                 )
                               ],
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Column(
                               children: [
-                                Text('Total Pre-Press Cost',
-                                  style: TextStyle(color: Colors.white),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 19.h),
+                                  child: Text('Type Setting', style: TextStyle(color: Colors.white,fontSize: 14.sp),),
                                 ),
-                                Container(
-                                  height: 44,
-                                  width: 250,
-                                  color: Colors.white,
-                                  child: Text('${((typuni!*typuniprce!) +
-                                      (potouni!*potouniprce!) +
-                                      (desuni!*desuniprce!) +
-                                      (profuni!*profuniprce!) +
-                                      (trauni!*trauniprce!)) +
-                                      (unitPrice1!*qty1!) +(unitPrice2!*qty2!) + (unitPrice3!*qty3!) + (unitPrice4!*qty4!)
-                                  }'),
-                                )
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 19.h),
+                                  child: Text('Photography', style: TextStyle(color: Colors.white, fontSize: 14.sp),),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 19.h),
+                                  child: Text('Design', style: TextStyle(color: Colors.white, fontSize: 14.sp),),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 19.h),
+                                  child: Text('Proofing', style: TextStyle(color: Colors.white, fontSize: 14.sp),),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 19.h),
+                                  child: Text('Translations', style: TextStyle(color: Colors.white, fontSize: 14.sp),),
+                                ),
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.all(16),
-                            width: 250,
-                            height: 63,
-                            child: RaisedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text('Back'),
-                              color: const Color.fromARGB(255, 185, 140, 62),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(57)),
+                            Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$typuni'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$potouni'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$desuni'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$profuni'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$trauni'),
+                                ),
+                              ],
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(16),
-                            width: 250,
-                            height: 63,
-                            child: RaisedButton(
-                              onPressed: () {
-                                exportExcel();
-                              },
-                              child: const Text('Export to Excel'),
-                              color: const Color.fromARGB(255, 185, 140, 62),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(57)),
+                            Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$typuniprce'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$potouniprce'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$desuniprce'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$profuniprce'),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(4.sp),
+                                  height: 44.h,
+                                  width: 250.w,
+                                  color: Colors.white,
+                                  child: Text('$trauniprce'),
+                                ),
+                              ],
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(16),
-                            width: 250,
-                            height: 63,
-                            child: RaisedButton(
-                              onPressed: () {
-                                detailBox.delete('Entered details');
-                                preBox.delete('pre1');
-                                preBox.delete('pre2');
-                                preBox.delete('pre3');
-                                preBox.delete('pre4');
-                                pre2Box.delete('pree');
+                            Padding(
+                              padding: EdgeInsets.all(8.sp),
+                              child: Column(
+                                children: [
+                                  Text('Total Work Cost',
+                                    style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                  ),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('${(typuni!*typuniprce!) +
+                                        (potouni!*potouniprce!) +
+                                        (desuni!*desuniprce!) +
+                                        (profuni!*profuniprce!) +
+                                          (trauni!*trauniprce!)
+                                    }'),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(8.sp),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text('Total Pre-Press Cost',
+                                    style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                                  ),
+                                  Container(
+                                    height: 44.h,
+                                    width: 250.w,
+                                    color: Colors.white,
+                                    child: Text('${((typuni!*typuniprce!) +
+                                        (potouni!*potouniprce!) +
+                                        (desuni!*desuniprce!) +
+                                        (profuni!*profuniprce!) +
+                                        (trauni!*trauniprce!)) +
+                                        (unitPrice1!*qty1!) +(unitPrice2!*qty2!) + (unitPrice3!*qty3!) + (unitPrice4!*qty4!)
+                                    }'),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
 
-                                Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-                              },
-                              child: const Text('Done'),
-                              color: const Color.fromARGB(255, 185, 140, 62),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(57)),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(16.sp),
+                      width: 250.w,
+                      height: 63.h,
+                      child: RaisedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('Back',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        color: const Color.fromARGB(255, 185, 140, 62),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(57.r)),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.sp),
+                      width: 250.w,
+                      height: 63.h,
+                      child: RaisedButton(
+                        onPressed: () {
+                          exportExcel();
+                        },
+                        child: Text('Export to Excel',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        color: const Color.fromARGB(255, 185, 140, 62),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(57.r)),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16.sp),
+                      width: 250.w,
+                      height: 63.h,
+                      child: RaisedButton(
+                        onPressed: () {
+                          detailBox.delete('Entered details');
+                          preBox.delete('pre1');
+                          preBox.delete('pre2');
+                          preBox.delete('pre3');
+                          preBox.delete('pre4');
+                          pre2Box.delete('pree');
+
+                          Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                        },
+                        child: Text('Done',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        color: const Color.fromARGB(255, 185, 140, 62),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(57.r)),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
             ),
           ),
       ],

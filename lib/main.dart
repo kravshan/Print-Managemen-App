@@ -5,8 +5,6 @@ import 'package:print_management/Page%20Models/pre_model.dart';
 import 'package:print_management/Pages/pre.dart';
 import 'package:print_management/Pages/pre2.dart';
 import 'package:print_management/Pages/summary.dart';
-import 'package:print_management/Pages/press.dart';
-import 'package:print_management/Pages/post_press.dart';
 import 'package:print_management/Pages/login.dart';
 import 'package:print_management/Pages/enter_details.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -69,34 +67,6 @@ Future<void> main() async {
                 }
               ),
               '/summary': (context) => Summary(),
-              '/press': (context) => FutureBuilder(
-                future: Hive.openBox<PreModel>('press'),
-                builder: (BuildContext context, AsyncSnapshot snapshot){
-                  if(snapshot.connectionState == ConnectionState.done){
-                    if(snapshot.hasError){
-                      return Text(snapshot.error.toString());
-                    }else{
-                      return Press();
-                    }
-                  }else{
-                    return const Scaffold();
-                  }
-                },
-              ),
-              '/post_press': (context)  => FutureBuilder(
-                future: Hive.openBox<dynamic>('post_press'),
-                builder: (BuildContext context, AsyncSnapshot snapshot){
-                  if(snapshot.connectionState == ConnectionState.done){
-                    if(snapshot.hasError){
-                      return Text(snapshot.error.toString());
-                    }else{
-                      return PostPress();
-                    }
-                  }else{
-                    return const Scaffold();
-                  }
-                },
-              ),
             },
           )
   ));

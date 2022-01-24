@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:print_management/Page%20Models/details_model.dart';
 import 'package:print_management/Services/backgound.dart';
 import 'package:print_management/Services/logo_bar.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class EnterDetails extends StatefulWidget {
+  const EnterDetails({Key? key}) : super(key: key);
+
   @override
   State<EnterDetails> createState() => _EnterDetailsState();
 }
@@ -14,10 +17,10 @@ class _EnterDetailsState extends State<EnterDetails> {
 
   late Box<DetailsModel> detailBox;
 
-  TextEditingController _date = TextEditingController();
-  TextEditingController _quotation = TextEditingController();
-  TextEditingController _clientName = TextEditingController();
-  TextEditingController _job = TextEditingController();
+  final TextEditingController _date = TextEditingController();
+  final TextEditingController _quotation = TextEditingController();
+  final TextEditingController _clientName = TextEditingController();
+  final TextEditingController _job = TextEditingController();
 
 
   @override
@@ -35,202 +38,215 @@ class _EnterDetailsState extends State<EnterDetails> {
           const LogoBar(),
           Scaffold(
             backgroundColor: Colors.transparent,
-            body: SingleChildScrollView(
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 600,
-                          width: 1100,
-                          margin: EdgeInsets.fromLTRB(0, 110, 0, 0),
-                          child: Align(
+            body: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 600.h,
+                        width: 1100.w,
+                        margin: EdgeInsets.fromLTRB(0, 140.h, 0, 140.h),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            padding: EdgeInsets.all(16.sp),
+                            height: 408.h,
+                            width: 765.w,
                             alignment: Alignment.centerLeft,
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 60),
-                              padding: EdgeInsets.all(16),
-                              height: 408,
-                              width: 765,
-                              alignment: Alignment.centerLeft,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                color: Colors.black.withOpacity(0.75)
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 25),
-                                    child: Text('1.Enter Details',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40.r),
+                              color: Colors.black.withOpacity(0.75)
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 25.w),
+                                  child: Text('1.Enter Details',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.sp,
                                     ),
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 30),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            const Padding(
-                                              padding: EdgeInsets.symmetric(vertical: 8),
-                                              child: Text('Date',
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 30.w),
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 8.h),
+                                            child: Text('Date',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14.sp
+                                            ),),
+                                          ),
+                                          Container(
+                                            height: 44.h,
+                                            width: 310.w,
+                                            color: Colors.white,
+                                            child: TextField(
+                                              textAlignVertical: TextAlignVertical.bottom,
+                                              controller: _date,
+                                              decoration: const InputDecoration(
+                                                border: InputBorder.none,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 50.w),
+                                            child: Text('Quotation No.',
                                               style: TextStyle(
-                                                color: Colors.white
+                                                  color: Colors.white,
+                                                  fontSize: 14.sp
                                               ),),
-                                            ),
-                                            Container(
-                                              height: 44,
-                                              width: 310,
-                                              color: Colors.white,
-                                              child: TextField(
-                                                controller: _date,
-                                                decoration: const InputDecoration(
-                                                  border: InputBorder.none,
-
-                                                ),
+                                          ),
+                                          Container(
+                                            height: 44.h,
+                                            width: 310.w,
+                                            margin: EdgeInsets.fromLTRB(50.w, 0, 0, 0),
+                                            color: Colors.white,
+                                            child: TextField(
+                                              textAlignVertical: TextAlignVertical.bottom,
+                                              controller: _quotation,
+                                              decoration: const InputDecoration(
+                                                border: InputBorder.none,
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            const Padding(
-                                              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 50),
-                                              child: Text('Quotation No.',
-                                                style: TextStyle(
-                                                    color: Colors.white
-                                                ),),
-                                            ),
-                                            Container(
-                                              height: 44,
-                                              width: 310,
-                                              margin: EdgeInsets.fromLTRB(50, 0, 0, 0),
-                                              color: Colors.white,
-                                              child: TextField(
-                                                controller: _quotation,
-                                                decoration: InputDecoration(
-                                                  border: InputBorder.none,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 30.w, ),
+                                  child: Text('Client Name',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14.sp,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 44.h,
+                                  width: 670.w,
+                                  margin: EdgeInsets.fromLTRB(30.w, 0, 0, 0),
+                                  color: Colors.white,
+                                  child: TextField(
+                                    textAlignVertical: TextAlignVertical.bottom,
+                                    controller: _clientName,
+                                    decoration: const InputDecoration(
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 30.w,),
+                                  child: Text('Job Description',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14.sp,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 44.h,
+                                  width: 670.w,
+                                  margin: EdgeInsets.fromLTRB(30.w, 0, 0, 0),
+                                  color: Colors.white,
+                                  child: TextField(
+                                    textAlignVertical: TextAlignVertical.bottom,
+                                    controller: _job,
+                                    decoration: const InputDecoration(
+                                      border: InputBorder.none,
 
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
                                     ),
                                   ),
-                                  const Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 30, ),
-                                    child: Text('Client Name',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 44,
-                                    width: 670,
-                                    margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                                    color: Colors.white,
-                                    child: TextField(
-                                      controller: _clientName,
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 30,),
-                                    child: Text('Job Description',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 44,
-                                    width: 670,
-                                    margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                                    color: Colors.white,
-                                    child: TextField(
-                                      controller: _job,
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        Container(
-                          width: 1100,
-                          margin: EdgeInsets.fromLTRB(0, 50, 0, 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                width: 218,
-                                height: 63,
-                                child: RaisedButton(
-                                  onPressed:(){
-                                    final String dat = _date.text;
-                                    final String qut = _quotation.text;
-                                    final String name = _clientName.text;
-                                    final String jobb = _job.text;
+                      ),
+                      Container(
+                        width: 1000.w,
+                        margin: EdgeInsets.fromLTRB(0, 50.h, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: 218.w,
+                              height: 63.h,
+                              child: RaisedButton(
+                                onPressed:(){
+                                  final String dat = _date.text;
+                                  final String qut = _quotation.text;
+                                  final String name = _clientName.text;
+                                  final String jobb = _job.text;
 
-                                    DetailsModel detail = DetailsModel(dat, qut, name, jobb);
-                                    detailBox.put('Entered details', detail);
+                                  DetailsModel detail = DetailsModel(dat, qut, name, jobb);
+                                  detailBox.put('Entered details', detail);
 
-                                    Navigator.pushNamed(context, '/pre');
-                                  },
-                                  child: const Text('NEXT'),
-                                  color: const Color.fromARGB(255, 185, 140, 62),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
+                                  Navigator.pushNamed(context, '/pre');
+                                },
+                                child: Text('NEXT',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w500
+                                  ),
                                 ),
+                                color: const Color.fromARGB(255, 185, 140, 62),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
                               ),
-                              SizedBox(
-                                width: 218,
-                                height: 63,
-                                child: RaisedButton(
-                                  onPressed:(){Navigator.pop(context);},
-                                  child: const Text('DISCARD'),
-                                  color: const Color.fromARGB(255, 185, 140, 62),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
+                            ),
+                            SizedBox(
+                              width: 218.w,
+                              height: 63.h,
+                              child: RaisedButton(
+                                onPressed:(){Navigator.pop(context);},
+                                child: Text('DISCARD',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w500
+                                  ),
                                 ),
+                                color: const Color.fromARGB(255, 185, 140, 62),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57.r)),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 250, 0, 0),
-                          height: 360,
-                          width: 360,
-                          child: SfCalendar(
-                            view: CalendarView.month,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(50.w, 550.h, 0, 0),
+                        height: 360.h,
+                        width: 360.w,
+                        child: SfCalendar(
+                          view: CalendarView.month,
+                        ),
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
         ],

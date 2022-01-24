@@ -1,11 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:print_management/Services/backgound.dart';
 import 'package:print_management/Services/logo_bar.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -30,43 +31,61 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SizedBox(
-                        width: 218,
-                        height: 63,
+                        width: 218.w,
+                        height: 63.h,
                         child: RaisedButton(
                           onPressed:(){
                             Navigator.pushNamed(context, '/enter_details');
                           },
-                          child: const Text('Start New'),
+                          child: Text('Start New',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500
+                            ),
+                          ),
                           color: const Color.fromARGB(255, 185, 140, 62),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
                         ),
                       ),
                       SizedBox(
-                        width: 218,
-                        height: 63,
+                        width: 218.w,
+                        height: 63.h,
                         child: RaisedButton(
                           onPressed:(){
                           },
-                          child: const Text('Previous QUT'),
-                          color: Color.fromARGB(255, 185, 140, 62),
+                          child: Text('Previous QUT',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w500
+                            ),
+                          ),
+                          color: const Color.fromARGB(255, 185, 140, 62),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
                         ),
                       ),
                       SizedBox(
-                        width: 218,
-                        height: 63,
+                        width: 218.w,
+                        height: 63.h,
                         child: RaisedButton(
                           onPressed:(){
                             Navigator.pushReplacementNamed(context, '/pre_press');
                           },
-                          child: const Text('Database'),
-                          color: Color.fromARGB(255, 185, 140, 62),
+                          child: Text('Database',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w500
+                            ),
+                          ),
+                          color: const Color.fromARGB(255, 185, 140, 62),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(57)),
                         ),
                       )
                     ],
                   ),
-                  SizedBox(height: 40,),
+                  SizedBox(height: 70.h,),
 
                 ],
               ),
