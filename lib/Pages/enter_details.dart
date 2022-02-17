@@ -66,7 +66,16 @@ class EnterDetails extends StatelessWidget {
                             width: 218.w,
                             height: 63.h,
                             child: RaisedButton(
-                              onPressed: () => _nextOnPressed(context),
+                              onPressed: () {
+                                if (date.text.isNotEmpty ||
+                                    quotation.text.isNotEmpty ||
+                                    clientName.text.isNotEmpty ||
+                                    job.text.isNotEmpty) {
+                                  _nextOnPressed(context);
+                                } else {
+                                  return;
+                                }
+                              },
                               child: Text(
                                 'NEXT',
                                 style: TextStyle(

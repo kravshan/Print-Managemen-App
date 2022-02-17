@@ -1,16 +1,16 @@
 import './pre_summary.dart';
 
 class Pre2Summary {
-  final int typuni;
-  final int potouni;
-  final int desuni;
-  final int profuni;
-  final int trauni;
-  final double typuniprce;
-  final double potouniprce;
-  final double desuniprce;
-  final double profuniprce;
-  final double trauniprce;
+  final String typuni;
+  final String potouni;
+  final String desuni;
+  final String profuni;
+  final String trauni;
+  final String typuniprce;
+  final String potouniprce;
+  final String desuniprce;
+  final String profuniprce;
+  final String trauniprce;
   final double qty1;
   final double qty2;
   final double qty3;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import './summary.dart';
+import '../Services/pre2_summary.dart';
 import '../Services/pre2_actions_list.dart';
 import '../Services/pre2_qty_list.dart';
 import '../Services/pre2_unit_price_list.dart';
@@ -44,7 +46,7 @@ class _Pre2State extends State<Pre2> {
   void _calculateQty() {
     final typuni = int.parse(_typeUnit.text);
     final potouni = int.parse(_photoUnit.text);
-    final desuni = int.parse(_photoUnit.text);
+    final desuni = int.parse(_designUnit.text);
     final profuni = int.parse(_proofUnit.text);
     final trauni = int.parse(_transUnit.text);
 
@@ -55,14 +57,43 @@ class _Pre2State extends State<Pre2> {
     final trauniprce = double.parse(_transUnitPrice.text);
 
     setState(() {
-      qty1 = typuni * typuniprce;
-      qty2 = potouni * potouniprce;
-      qty3 = desuni * desuniprce;
-      qty4 = profuni * profuniprce;
-      qty5 = trauni * trauniprce;
+      qty1 = (typuni * typuniprce);
+      qty2 = (potouni * potouniprce);
+      qty3 = (desuni * desuniprce);
+      qty4 = (profuni * profuniprce);
+      qty5 = (trauni * trauniprce);
 
       resultpre2 = qty1 + qty2 + qty3 + qty4 + qty5;
     });
+  }
+
+  Future<void> _nextOnPressed() async{
+    final Pre2Summary tx = Pre2Summary(
+      desuni: _designUnit.text,
+      desuniprce: _designUnitPrice.text,
+      potouni: _photoUnit.text,
+      potouniprce: _photoUnitPrice.text,
+      profuni: _proofUnit.text,
+      profuniprce: _proofUnitPrice.text,
+      qty1: qty1,
+      qty2: qty2,
+      qty3: qty3,
+      qty4: qty4,
+      qty5: qty5,
+      resultpre2: resultpre2,
+      trauni: _transUnit.text,
+      trauniprce: _transUnitPrice.text,
+      typuni: _typeUnit.text,
+      typuniprce: _typeUnitPrice.text,
+      summaryTwo: _summaryTwo,
+    );
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext ctx) => Summary(tx),
+      ),
+    );
   }
 
   @override
@@ -194,7 +225,20 @@ class _Pre2State extends State<Pre2> {
                       height: 63.h,
                       child: RaisedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/summary');
+                          if (_designUnit.text.isNotEmpty ||
+                              _designUnitPrice.text.isNotEmpty ||
+                              _photoUnit.text.isNotEmpty ||
+                              _photoUnitPrice.text.isNotEmpty ||
+                              _proofUnit.text.isNotEmpty ||
+                              _proofUnitPrice.text.isNotEmpty ||
+                              _typeUnit.text.isNotEmpty ||
+                              _typeUnitPrice.text.isNotEmpty ||
+                              _transUnit.text.isNotEmpty ||
+                              _transUnitPrice.text.isNotEmpty) {
+                            _nextOnPressed();
+                          } else {
+                            return;
+                          }
                         },
                         child: Text(
                           'Next',
